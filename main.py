@@ -38,7 +38,7 @@ Send a video/file to get started.
 
 START_BTN = InlineKeyboardMarkup(
         [[
-        InlineKeyboardButton('Contact Owner 👨🏻‍💻', url='t.me/PavanMagar'),
+        InlineKeyboardButton('Contact Owner 👨🏻‍💻', user_id=2056407064),
         ]]
     )
 
