@@ -3,6 +3,18 @@ from display_progress import progress_for_pyrogram
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyromod import listen
+import config
+from handlers.broadcast import broadcast
+from handlers.check_user import handle_user_status
+from handlers.database import Database
+
+LOG_CHANNEL = config.LOG_CHANNEL
+AUTH_USERS = config.AUTH_USERS
+DB_URL = config.DB_URL
+DB_NAME = config.DB_NAME
+
+db = Database(DB_URL, DB_NAME)
+
 
 BOT_TOKEN = "5618782891:AAHaNxV7WgvgqrPN6FdgVo1aFBSfkhj-xDs"
 API_ID = "10098309"
@@ -32,6 +44,17 @@ START_BTN = InlineKeyboardMarkup(
 
 @Bot.on_message(filters.command(["start"]))
 async def start(bot, update):
+      # return
+    chat_id = message.from_user.id
+    if not await db.is_user_exist(chat_id):
+        data = await client.get_me()
+        BOT_USERNAME = data.username
+        await db.add_user(chat_id)
+        if LOG_CHANNEL:
+            await client.send_message(
+                LOG_CHANNEL,
+                f"#NEWUSER: \n\nNew User [{message.from_user.first_name}](tg://user?id={message.from_user.id}) started @{BOT_USERNAME} !!",
+            )
     text = START_TXT.format(update.from_user.mention)
     reply_markup = START_BTN
     await update.reply_text(
