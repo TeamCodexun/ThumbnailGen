@@ -16,7 +16,7 @@ Bot = Client(
 )
 
 START_TXT = """
-Hey {} 🙋🏻‍♂️ 
+Hey there, {} 👋 
 
 I am video thumbnail changer Bot. I will helps you to change your video thumbnail on telegram.
 
