@@ -64,6 +64,27 @@ async def start(client: Client, message: Message):
         reply_markup=reply_markup
     )
 
+@Client.on_message(filters.private & filters.command("broadcast"))
+async def broadcast_handler_open(_, m):
+    if m.from_user.id not in AUTH_USERS:
+        await m.delete()
+        return
+    if m.reply_to_message is None:
+        await m.delete()
+    else:
+        await broadcast(m, db)
+
+
+@Client.on_message(filters.private & filters.command("stats"))
+async def sts(c, m):
+    if m.from_user.id not in AUTH_USERS:
+        await m.delete()
+        return
+    await m.reply_text(
+        text=f"**Total Users in Database 📂:** `{await db.total_users_count()}`\n\n**Total Users with Notification Enabled 🔔 :** `{await db.total_notif_users_count()}`",
+        parse_mode="Markdown",
+        quote=True
+    )
 
 # global variable to store path of the recent sended thumbnail
 thumb = ""
