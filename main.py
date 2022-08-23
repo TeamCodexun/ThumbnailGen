@@ -1,6 +1,7 @@
 import os, time
 from display_progress import progress_for_pyrogram
 from pyrogram import Client, filters
+from pyrogram.types import Message
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyromod import listen
 import config
@@ -43,7 +44,7 @@ START_BTN = InlineKeyboardMarkup(
 
 
 @Bot.on_message(filters.command(["start"]))
-async def start(bot, update):
+async def start(bot, update, message: Message, client: Client):
       # return
     chat_id = message.from_user.id
     if not await db.is_user_exist(chat_id):
