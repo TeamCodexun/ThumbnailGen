@@ -4,7 +4,7 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyromod import listen
 
-BOT_TOKEN = "5341317942:AAEbTtVEKMToQq2Eq1mVBJEab-3uKhVPsr8"
+BOT_TOKEN = "5618782891:AAHaNxV7WgvgqrPN6FdgVo1aFBSfkhj-xDs"
 API_ID = "10098309"
 API_HASH = "aaacac243dddc9f0433c89cab8efe323"
 
