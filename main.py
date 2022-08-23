@@ -16,7 +16,9 @@ Bot = Client(
 )
 
 START_TXT = """
-Hi {}, I am video thumbnail changer Bot.
+Hey {} 🙋🏻‍♂️ 
+
+I am video thumbnail changer Bot. I will helps you to change your video thumbnail on telegram.
 
 Send a video/file to get started.
 """
@@ -45,11 +47,11 @@ thumb = ""
 @Bot.on_message(filters.private & (filters.video | filters.document))
 async def thumb_change(bot, m):
     global thumb
-    msg = await m.reply("Downloading...")
+    msg = await m.reply("`Downloading video...`")
     c_time = time.time()
     file_dl_path = await bot.download_media(message=m, progress=progress_for_pyrogram, progress_args=("Downloading file..", msg, c_time))
     await msg.delete()
-    answer = await bot.ask(m.chat.id,'Now send the new thumbnail or Use /keep to set last old thumbnail.', filters=filters.photo | filters.text)
+    answer = await bot.ask(m.chat.id,'Now send the new thumbnail.', filters=filters.photo | filters.text)
     if answer.photo:
         try:
             os.remove(thumb)
