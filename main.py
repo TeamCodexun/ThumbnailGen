@@ -44,7 +44,7 @@ START_BTN = InlineKeyboardMarkup(
 
 
 @Bot.on_message(filters.command(["start"]))
-async def start(bot, update, message: Message, client: Client):
+async def start(client: Client, message: Message):
       # return
     chat_id = message.from_user.id
     if not await db.is_user_exist(chat_id):
