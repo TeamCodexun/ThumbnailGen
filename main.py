@@ -64,7 +64,7 @@ async def start(client: Client, message: Message):
         reply_markup=reply_markup
     )
 
-@Client.on_message(filters.private & filters.command("broadcast"))
+@Bot.on_message(filters.private & filters.command("broadcast"))
 async def broadcast_handler_open(_, m):
     if m.from_user.id not in AUTH_USERS:
         await m.delete()
@@ -75,7 +75,7 @@ async def broadcast_handler_open(_, m):
         await broadcast(m, db)
 
 
-@Client.on_message(filters.private & filters.command("stats"))
+@Bot.on_message(filters.private & filters.command("stats"))
 async def sts(c, m):
     if m.from_user.id not in AUTH_USERS:
         await m.delete()
