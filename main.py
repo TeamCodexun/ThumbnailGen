@@ -98,21 +98,21 @@ START_BTN = InlineKeyboardMarkup(
 
 @Bot.on_message(filters.private & filters.command(["start", "help"]))
 async def start_help_handler(
-    bot : Update,
+    client : Client,
     msg : Message
     ):
       # return
     chat_id = msg.from_user.id
     if not await db.is_user_exist(chat_id):
-        data = await Client.get_me()
+        data = await client.get_me()
         BOT_USERNAME = data.username
         await db.add_user(chat_id)
         if LOG_CHANNEL:
-            await Client.send_message(
+            await client.send_message(
                 LOG_CHANNEL,
                 f"#NEWUSER: \n\nNew User [{msg.from_user.first_name}](tg://user?id={msg.from_user.id}) started Thumbnail Changer !!",
             )
-    if await search_user_in_community(bot, msg):
+    if await search_user_in_community(client, msg):
             text = START_TXT.format(msg.from_user.mention)
             reply_markup = START_BTN
             await msg.reply_text(
