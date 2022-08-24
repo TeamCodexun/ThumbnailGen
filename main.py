@@ -102,7 +102,7 @@ async def start_help_handler(
     msg : Message
     ):
     if await search_user_in_community(bot, msg):
-            text = START_TXT.format(message.from_user.mention)
+            text = START_TXT.format(msg.from_user.mention)
             reply_markup = START_BTN
             await msg.reply_text(
         text=text,
