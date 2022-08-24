@@ -99,10 +99,6 @@ START_BTN = InlineKeyboardMarkup(
 
 @Bot.on_message(filters.command(["start"]))
 async def start(client: Client, message: Message):
-async def start_help_handler(
-    bot : Update,
-    msg : Message
-    ):
 if await search_user_in_community(bot, msg):
       # return
     chat_id = message.from_user.id
