@@ -8,6 +8,60 @@ import config
 from handlers.broadcast import broadcast
 from handlers.check_user import handle_user_status
 from handlers.database import Database
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.errors import exceptions, UserNotParticipant
+from pyrogram.types import Update, Message
+
+### Defining some functions
+#Checking User whether he joined channel and group or not joined.
+async def search_user_in_community(
+    bot : Update,
+    msg : Message
+    ):
+    try:
+        userChannel = await bot.get_chat_member(
+            '@DotexMovie',
+            msg.chat.id
+        )
+        userGroup = await bot.get_chat_member(
+            '@DotexRequest',
+            msg.chat.id
+        )
+        if "kicked" in (userGroup.status, userChannel.status):
+            await msg.reply_text(
+                "<b>You are Banned🚫 from AJPyroVerse Community.\nContact @AJTimePyro (Owner of AJPyroVerse)</b>",
+                parse_mode = 'html'
+            )
+            return
+    except UserNotParticipant:
+        await msg.reply_text(
+            f"<b>To use this bot, you need to Join our channel and Group😁🤪.</b>{common_text}",
+            parse_mode = 'html',
+            reply_markup = InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton(
+                            'Join our Channel.',
+                            url = 'https://t.me/AJPyroVerse'
+                        )
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            'Join our Group.',
+                            url = 'https://t.me/AJPyroVerseGroup'
+                        )
+                    ]
+                ]
+            )
+        )
+        return
+    except exceptions.bad_request_400.ChatAdminRequired:
+        return True
+    except Exception as e:
+        await bot.send_message(config.AUTH_USERS, "")
+        return True
+    else:
+        return True
 
 LOG_CHANNEL = config.LOG_CHANNEL
 AUTH_USERS = config.AUTH_USERS
@@ -45,6 +99,11 @@ START_BTN = InlineKeyboardMarkup(
 
 @Bot.on_message(filters.command(["start"]))
 async def start(client: Client, message: Message):
+async def start_help_handler(
+    bot : Update,
+    msg : Message
+    ):
+if await search_user_in_community(bot, msg):
       # return
     chat_id = message.from_user.id
     if not await db.is_user_exist(chat_id):
