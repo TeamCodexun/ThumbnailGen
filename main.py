@@ -102,7 +102,7 @@ async def start_help_handler(
     msg : Message
     ):
     if await search_user_in_community(bot, msg):
-            await message.reply_text(
+            await msg.reply_text(
         text=text,
         disable_web_page_preview=True,
         reply_markup=reply_markup
