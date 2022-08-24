@@ -102,7 +102,7 @@ async def start_help_handler(
     msg : Message
     ):
       # return
-    chat_id = message.from_user.id
+    chat_id = msg.from_user.id
     if not await db.is_user_exist(chat_id):
         data = await client.get_me()
         BOT_USERNAME = data.username
@@ -110,7 +110,7 @@ async def start_help_handler(
         if LOG_CHANNEL:
             await client.send_message(
                 LOG_CHANNEL,
-                f"#NEWUSER: \n\nNew User [{message.from_user.first_name}](tg://user?id={message.from_user.id}) started @{BOT_USERNAME} !!",
+                f"#NEWUSER: \n\nNew User [{msg.from_user.first_name}](tg://user?id={msg.from_user.id}) started Thumbnail Changer !!",
             )
     if await search_user_in_community(bot, msg):
             text = START_TXT.format(msg.from_user.mention)
