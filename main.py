@@ -48,7 +48,7 @@ async def search_user_in_community(
     except exceptions.bad_request_400.ChatAdminRequired:
         return True
     except Exception as e:
-        await bot.send_message(config.AUTH_USERS, "")
+        await bot.send_message(config.AUTH_USERS, "Make me admin in channel.")
         return True
     else:
         return True
