@@ -23,13 +23,9 @@ async def search_user_in_community(
             '@DotexMovie',
             msg.chat.id
         )
-        userGroup = await bot.get_chat_member(
-            '@DotexRequest',
-            msg.chat.id
-        )
-        if "kicked" in (userGroup.status, userChannel.status):
+        if "kicked" in (userChannel.status):
             await msg.reply_text(
-                "<b>You are Banned🚫 from AJPyroVerse Community.\nContact @AJTimePyro (Owner of AJPyroVerse)</b>",
+                "<b>You are Banned🚫 from Admin Community.\nContact @PavanMagar (Owner of DotexMovie)</b>",
                 parse_mode = 'html'
             )
             return
@@ -43,12 +39,6 @@ async def search_user_in_community(
                         InlineKeyboardButton(
                             'Join our Channel.',
                             url = 'https://t.me/DotexMovie'
-                        )
-                    ],
-                    [
-                        InlineKeyboardButton(
-                            'Join our Group.',
-                            url = 'https://t.me/DotexRequest'
                         )
                     ]
                 ]
