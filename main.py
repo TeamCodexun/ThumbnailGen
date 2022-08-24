@@ -102,12 +102,11 @@ async def start_help_handler(
     msg : Message
     ):
     if await search_user_in_community(bot, msg):
-            msg.text = "/start"
-            textMsg = f"<b>Hi, I am MegaUploaderBot🤖 Created by @AJPyroVerse and My Developer🧑‍💻 is @AJTimePyro.</b>\n\nAnd I support:-\n1. <u>Direct Downloading Link</u>\n2.<u>Telegram File</u>\n3. <u>Youtube URL</u>\n\n\n to login\n😊We will store your login detail on our database."
-          await msg.reply_text(
-            textMsg,
-            parse_mode = "html"
-        )
+            await message.reply_text(
+        text=text,
+        disable_web_page_preview=True,
+        reply_markup=reply_markup
+    )
     return
 
 @Bot.on_message(filters.command(["sart"]))
