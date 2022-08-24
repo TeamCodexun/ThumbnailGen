@@ -35,7 +35,7 @@ async def search_user_in_community(
             return
     except UserNotParticipant:
         await msg.reply_text(
-            f"<b>To use this bot, you need to Join our channel and Group😁🤪.</b>{common_text}",
+            f"<b>To use this bot, you need to Join our channel and Group😁🤪.</b>",
             parse_mode = 'html',
             reply_markup = InlineKeyboardMarkup(
                 [
