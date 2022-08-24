@@ -104,11 +104,11 @@ async def start_help_handler(
       # return
     chat_id = msg.from_user.id
     if not await db.is_user_exist(chat_id):
-        data = await client.get_me()
+        data = await Client.get_me()
         BOT_USERNAME = data.username
         await db.add_user(chat_id)
         if LOG_CHANNEL:
-            await client.send_message(
+            await Client.send_message(
                 LOG_CHANNEL,
                 f"#NEWUSER: \n\nNew User [{msg.from_user.first_name}](tg://user?id={msg.from_user.id}) started Thumbnail Changer !!",
             )
