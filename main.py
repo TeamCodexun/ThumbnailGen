@@ -25,20 +25,20 @@ async def search_user_in_community(
         )
         if "kicked" in (userChannel.status):
             await msg.reply_text(
-                "<b>You are Banned🚫 from Admin Community.\nContact @PavanMagar (Owner of DotexMovie)</b>",
+                "<b>You are Banned🚫 from Admin Community.\nContact @PavanMagar (Owner of Codexun)</b>",
                 parse_mode = 'html'
             )
             return
     except UserNotParticipant:
         await msg.reply_text(
-            f"<b>To use this bot, you need to Join our channel and Group😁🤪.</b>",
+            f"<b>To use this bot, you need to Join our channel and Group 🍀</b>",
             parse_mode = 'html',
             reply_markup = InlineKeyboardMarkup(
                 [
                     [
                         InlineKeyboardButton(
                             'Join our Channel.',
-                            url = 'https://t.me/DotexMovie'
+                            url = 'https://t.me/Codexun'
                         )
                     ]
                 ]
@@ -82,6 +82,11 @@ Send a video/file to get started.
 
 START_BTN = InlineKeyboardMarkup(
         [[
+                        InlineKeyboardButton(
+                            'Update Channel',
+                            url = 'https://t.me/Codexun'
+                        )
+                    ],[
         InlineKeyboardButton('Contact Owner 👨🏻‍💻', user_id=1956434828),
         ]]
     )
