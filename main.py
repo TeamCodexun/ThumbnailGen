@@ -31,7 +31,7 @@ async def search_user_in_community(
             return
     except UserNotParticipant:
         await msg.reply_text(
-            f"<b>To use this bot, you need to Join our channel and Group 🍀</b>",
+            f"<b>To use this bot, you need to Join our update channel. click below 🏃</b>",
             parse_mode = 'html',
             reply_markup = InlineKeyboardMarkup(
                 [
@@ -83,7 +83,10 @@ Send a video/file to get started.
 START_BTN = InlineKeyboardMarkup(
         [[
                         InlineKeyboardButton(
-                            'Update Channel',
+                            'Support',
+                            url = 'https://t.me/CodexunBot'
+                        ),InlineKeyboardButton(
+                            'Update',
                             url = 'https://t.me/Codexun'
                         )
                     ],[
