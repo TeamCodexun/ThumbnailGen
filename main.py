@@ -20,7 +20,7 @@ async def search_user_in_community(
     ):
     try:
         userChannel = await bot.get_chat_member(
-            '@DotexMovie',
+            '@Codexun',
             msg.chat.id
         )
         if "kicked" in (userChannel.status):
